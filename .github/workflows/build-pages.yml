@@ -1,0 +1,40 @@
+name: Build GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "panel-consumos/**"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar dependencias
+        working-directory: panel-consumos
+        run: npm install
+
+      - name: Generar GitHub Pages
+        working-directory: panel-consumos
+        run: npm run build:pages
+
+      - name: Guardar archivos generados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git diff --cached --quiet || git commit -m "Actualizar GitHub Pages"
+          git push
