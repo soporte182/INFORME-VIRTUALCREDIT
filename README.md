@@ -29,3 +29,8 @@ npm run build:pages
 El resultado se escribe en `docs/`. Sube ambos cambios al repositorio. Para desarrollo local: `npm run dev:pages`.
 
 La clave incluida en `lib/supabase.ts` es pública (publishable). Ninguna clave secreta debe incluirse en el repositorio. El proyecto original de Sites conserva su publicación independiente y no se sincroniza con esta nueva base.
+
+## Otros cobros
+La pestaña Otros cobros muestra validación de identidad, campañas y mensajes por entidad, con totales según los filtros de mes y entidad. Los registros anteriores se interpretan con cero en los campos nuevos. Se editan en Actualizar mes y se guardan dentro del informe JSON en Supabase; no hace falta volver a ejecutar el SQL de instalación. No descuentan de la bolsa de análisis.
+
+Para pegar desde Excel: entidad, deudor, codeudor, validación de identidad, campañas, mensajes (seis columnas, sin encabezados). Con tres columnas se conservan los otros cobros de las entidades incluidas en el formulario. La importación reemplaza todas las filas del formulario.
